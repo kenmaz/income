@@ -1,0 +1,22 @@
+<h1>New bonus</h1>
+
+<%= form_tag do %>
+  <p>
+    amount:
+    <%= text_field_tag 'bonus[amount]', @bonus.amount %>
+  </p>
+  <p>
+    company_name: 
+    <%= text_field_tag 'bonus[company_name]', @bonus.company.name %>
+  </p>
+  <p>
+    age:
+    <%= text_field_tag 'bonus[age]', @bonus.age %>
+  </p>
+  <p>
+    <%= submit_tag '投稿' %>
+  </p>
+<% end %>
+
+<br>
+<%= link_to 'View Ranking', :action => :list %>
