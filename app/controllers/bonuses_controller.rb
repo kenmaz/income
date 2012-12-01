@@ -15,18 +15,13 @@ class BonusesController < ApplicationController
   end
 
   def register 
-    @bonus = Bonus.new
-    if bonus = params[:bonus]
-      @bonus.amount = bonus[:amount]
-      @bonus.age = bonus[:age]
-      unless @bonus.company = Company.find_by_name(bonus[:company_name])
-        @bonus.company = Company.new({:name => bonus[:company_name]})
-      end 
-      if @bonus.save
+    if params[:bonus]
+      if @bonus = Bonus.create(params[:bonus])
         redirect_to :action => :list
       end
     else
-      @bonus.company = Company.first
+      @bonus = Bonus.new
+      @bonus.company = Company.new
       @bonus.amount = 90 
       @bonus.age = 32
     end

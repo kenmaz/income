@@ -17,9 +17,6 @@
       <td>￥<%= bonus.amount %></td>
       <td><%= link_to "#{bonus.age}歳", :action => :list, :mode => :age, :age => bonus.age %></td>
       <td><%= link_to "#{bonus.company.name}", :action => :list, :mode => :company, :company_id => bonus.company.id %></td>
-      <td><%= link_to 'Show', bonus %></td>
-      <td><%= link_to 'Edit', edit_bonus_path(bonus) %></td>
-      <td><%= link_to 'Destroy', bonus, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

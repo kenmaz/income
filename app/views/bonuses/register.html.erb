@@ -1,20 +1,22 @@
 <h1>New bonus</h1>
 
-<%= form_tag do %>
+<%= form_for @bonus, :url => {:action => :register} do |f| %>
   <p>
-    amount:
-    <%= text_field_tag 'bonus[amount]', @bonus.amount %>
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
   </p>
   <p>
-    company_name: 
-    <%= text_field_tag 'bonus[company_name]', @bonus.company.name %>
+    <%= f.fields_for :company do |f2| %>
+      <%= f2.label :name %>
+      <%= f2.text_field :name %>
+    <% end %>
   </p>
   <p>
-    age:
-    <%= text_field_tag 'bonus[age]', @bonus.age %>
+    <%= f.label :age %>
+    <%= f.text_field :age %>
   </p>
   <p>
-    <%= submit_tag '投稿' %>
+    <%= f.submit '投稿' %>
   </p>
 <% end %>
 
