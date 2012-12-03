@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130110044) do
+ActiveRecord::Schema.define(:version => 20121203063054) do
 
   create_table "bonuses", :force => true do |t|
     t.integer  "amount"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20121130110044) do
     t.string   "company_name"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.string   "comment"
   end
 
   add_index "bonuses", ["age"], :name => "index_bonuses_on_age"

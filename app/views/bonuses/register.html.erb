@@ -1,18 +1,33 @@
 <h1>2012冬ボーナスいくらもらった？</h1>
 
 <%= form_for @bonus, :url => {:action => :register} do |f| %>
+
+  <% if @bonus.errors.any? %>
+    <ul>
+      <% @bonus.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <table>
     <tr>
       <td>金額(単位:円)</td>
-      <td><%= f.text_field :amount %>円</td>
+      <td>
+        <%= f.text_field :amount, :placeholder => "必須. 例)500000" %>
+      </td>
     </tr>
     <tr>
       <td>会社名</td>
-      <td><%= f.text_field :company_name %></td>
+      <td><%= f.text_field :company_name, :placeholder => "必須. 例)ほげほげ商事"%></td>
     </tr>
     <tr>
       <td>年齢</td>
-      <td><%= f.text_field :age %></td>
+      <td><%= f.text_field :age, :placeholder => "必須. 例)28"%></td>
+    </tr>
+    <tr>
+      <td>コメント</td>
+      <td><%= f.text_field :comment, :size => 50, :placeholder => "任意（256文字以内）" %></td>
     </tr>
     <tr>
       <td colspan="2"><%= f.submit '投稿' %></td>
@@ -21,4 +36,4 @@
 <% end %>
 
 <br>
-<%= link_to 'View Ranking', :action => :list %>
+<%= link_to '金額を登録せずにランキングを見る', :action => :list %>
