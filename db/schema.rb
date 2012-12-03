@@ -16,28 +16,12 @@ ActiveRecord::Schema.define(:version => 20121130110044) do
   create_table "bonuses", :force => true do |t|
     t.integer  "amount"
     t.integer  "age"
-    t.integer  "company_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "company_name"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   add_index "bonuses", ["age"], :name => "index_bonuses_on_age"
-  add_index "bonuses", ["company_id"], :name => "index_bonuses_on_company_id"
-
-  create_table "companies", :force => true do |t|
-    t.string   "name"
-    t.integer  "company_type_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "companies", ["company_type_id"], :name => "index_companies_on_company_type_id"
-  add_index "companies", ["name"], :name => "index_companies_on_name"
-
-  create_table "company_types", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
+  add_index "bonuses", ["company_name"], :name => "index_bonuses_on_company_name"
 
 end

@@ -3,11 +3,11 @@ class CreateBonuses < ActiveRecord::Migration
     create_table :bonuses do |t|
       t.integer :amount
       t.integer :age
-      t.integer :company_id
+      t.string :company_name
 
       t.timestamps
     end
     add_index :bonuses, :age
-    add_index :bonuses, :company_id
+    add_index :bonuses, :company_name
   end
 end

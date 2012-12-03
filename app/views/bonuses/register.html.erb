@@ -1,23 +1,23 @@
-<h1>New bonus</h1>
+<h1>2012冬ボーナスいくらもらった？</h1>
 
 <%= form_for @bonus, :url => {:action => :register} do |f| %>
-  <p>
-    <%= f.label :amount %>
-    <%= f.text_field :amount %>
-  </p>
-  <p>
-    <%= f.fields_for :company do |f2| %>
-      <%= f2.label :name %>
-      <%= f2.text_field :name %>
-    <% end %>
-  </p>
-  <p>
-    <%= f.label :age %>
-    <%= f.text_field :age %>
-  </p>
-  <p>
-    <%= f.submit '投稿' %>
-  </p>
+  <table>
+    <tr>
+      <td>金額(単位:円)</td>
+      <td><%= f.text_field :amount %>円</td>
+    </tr>
+    <tr>
+      <td>会社名</td>
+      <td><%= f.text_field :company_name %></td>
+    </tr>
+    <tr>
+      <td>年齢</td>
+      <td><%= f.text_field :age %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.submit '投稿' %></td>
+    </tr>
+  </table>
 <% end %>
 
 <br>

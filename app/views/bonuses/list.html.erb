@@ -1,26 +1,30 @@
-<h1>Listing bonuses</h1>
-
-<p><%= @ranking_title %></p>
+<h1>
+  <% if @mode == 'age' %>
+    <%=h @age %>歳の
+  <% elsif @mode == 'company_name' %>
+    <%=h @company_name %>の
+  <% end %>
+  2012冬ボーナスランキング 
+</h1>
 
 <table>
   <tr>
-    <th>Amount</th>
-    <th>Age</th>
-    <th>Company</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>No.</th>
+    <th>金額</th>
+    <th>年齢</th>
+    <th>会社名</th>
   </tr>
 
-  <% @bonuses.each do |bonus| %>
+  <% @bonuses.each_with_index do |bonus, i| %>
     <tr>
-      <td>￥<%= bonus.amount %></td>
-      <td><%= link_to "#{bonus.age}歳", :action => :list, :mode => :age, :age => bonus.age %></td>
-      <td><%= link_to "#{bonus.company.name}", :action => :list, :mode => :company, :company_id => bonus.company.id %></td>
+      <td><%=h i + 1 %></td>
+      <td>￥<%=h bonus.amount %></td>
+      <td><%=h link_to "#{bonus.age}歳", :action => :list, :mode => :age, :age => bonus.age %></td>
+      <td><%=h link_to "#{bonus.company_name}", :action => :list, :mode => :company_name, :company_name => bonus.company_name %></td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'Register', :action => :register %>
+<%= link_to 'ボーナス金額を登録', :action => :register %>
