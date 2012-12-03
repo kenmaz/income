@@ -1,6 +1,7 @@
 class BonusesController < ApplicationController
 
   def list
+    @highlight = params[:highlight]
     case @mode = params[:mode]
     when 'age'
       @age = params[:age]
@@ -17,7 +18,7 @@ class BonusesController < ApplicationController
     if params[:bonus]
       @bonus = Bonus.new(params[:bonus])
       if @bonus.save
-        redirect_to :action => :list
+        redirect_to :action => :list, :highlight => @bonus.id, :anchor => @bonus.id
       end
     else
       @bonus = Bonus.new

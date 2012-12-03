@@ -1,16 +1,22 @@
 <h1>
-  <% if @mode == 'age' %>
-    <%=h @age %>歳の
-  <% elsif @mode == 'company_name' %>
-    <%=h @company_name %>の
-  <% end %>
-  2012冬ボーナスランキング 
+  2012冬ボーナスランキング
 </h1>
 
-<% if @mode %>
-<%= link_to ' < 総合ランキング', :action => :list %>
-<% end %>
+<p>
+  <%= link_to 'ボーナス金額を登録してみる', {:action => :register}, {:class => "btn"} %>
+</p>
 
+<p>
+  集計範囲：
+  <%= link_to '全体', {:action => :list} %>
+  <% if @mode == 'age' %>
+    &gt; <%=h @age %>歳
+  <% elsif @mode == 'company_name' %>
+    &gt; <%=h @company_name %>
+  <% end %>
+</p>
+
+<p>
 <table class="table table-striped table-bordered table-condensed">
   <thead>
     <tr>
@@ -23,7 +29,7 @@
   </thead>
   <tbody>
     <% @bonuses.each_with_index do |bonus, i| %>
-      <tr>
+      <tr id="<%= bonus.id %>" class="<%= @highlight.to_i == bonus.id ? 'success' : ''%>">
         <td><%=h i + 1 %></td>
         <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
         <td><%=h link_to "#{bonus.age}歳", {:action => :list, :mode => :age, :age => bonus.age} %></td>
@@ -33,7 +39,5 @@
     <% end %>
   </tbody>
 </table>
+</p>
 
-<br />
-
-<%= link_to 'ボーナス金額を登録してみる', :action => :register %>
