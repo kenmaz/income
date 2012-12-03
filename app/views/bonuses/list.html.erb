@@ -7,24 +7,31 @@
   2012冬ボーナスランキング 
 </h1>
 
-<table>
-  <tr>
-    <th>No.</th>
-    <th>金額</th>
-    <th>年齢</th>
-    <th>会社名</th>
-    <th>コメント</th>
-  </tr>
+<% if @mode %>
+<%= link_to ' < 総合ランキング', :action => :list %>
+<% end %>
 
-  <% @bonuses.each_with_index do |bonus, i| %>
+<table class="table table-striped table-bordered table-condensed">
+  <thead>
     <tr>
-      <td><%=h i + 1 %></td>
-      <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
-      <td><%=h link_to "#{bonus.age}歳", :action => :list, :mode => :age, :age => bonus.age %></td>
-      <td><%=h link_to "#{bonus.company_name}", :action => :list, :mode => :company_name, :company_name => bonus.company_name %></td>
-      <td><%=h bonus.comment %></td>
+      <th>No.</th>
+      <th>金額</th>
+      <th>年齢</th>
+      <th>会社名</th>
+      <th>コメント</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @bonuses.each_with_index do |bonus, i| %>
+      <tr>
+        <td><%=h i + 1 %></td>
+        <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
+        <td><%=h link_to "#{bonus.age}歳", {:action => :list, :mode => :age, :age => bonus.age} %></td>
+        <td><%=h link_to "#{bonus.company_name}", {:action => :list, :mode => :company_name, :company_name => bonus.company_name} %></td>
+        <td><%=h bonus.comment %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <br />

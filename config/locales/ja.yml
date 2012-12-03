@@ -3,6 +3,7 @@ ja:
     amount: 金額
     company_name: 会社名
     age: 年齢
+    comment: コメント
   date:
     abbr_day_names:
     - 日
