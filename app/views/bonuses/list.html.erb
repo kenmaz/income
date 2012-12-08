@@ -1,11 +1,3 @@
-<h1>うわっ...私の年収、低すぎ...？</h1>
-<h3>- 給料がいかに安いかを自慢するサイト -</h3>
-
-<p>
-  <%= link_to '匿名で給与を登録して完全なランキングを見る', @login_url, {:class => "btn btn-large"} %>
-</p>
-
-
 <p>
   集計範囲：
   <%= link_to '全体', {:action => :list} %>
@@ -39,7 +31,32 @@
         <td><%=h bonus.comment %></td>
       </tr>
     <% end %>
+    <% unless @is_registerd %>
+      <% 3.times do %>
+        <tr class="muted">
+          <td>...</td>
+          <td>...</td>
+          <td>..</td>
+          <td>.....</td>
+          <td>....</td>
+          <td>...</td>
+        </tr>
+      <% end %>
+    <% end %>
   </tbody>
 </table>
 </p>
 
+<% unless @is_registerd %>
+  <p><%= @total_count %>件中10件を表示中</p>
+<% end %>
+
+<div style="text-align:center">
+  <% unless @is_registerd %>
+    <p class="lead">ランキングをもっと見るには↓↓↓</p>
+  <% end %>
+  <%= link_to '匿名で給与情報を登録する', @login_url, {:class => "btn btn-large"} %>
+  <p>登録にはFacebookアカウントが必要です</p>
+</div>
+
+<%= link_to 'ログアウト', :action => :logout %>

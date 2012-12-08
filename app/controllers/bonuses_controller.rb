@@ -3,18 +3,19 @@ class BonusesController < ApplicationController
   before_filter :setup_for_auth
 
   def list
-    limit = @is_login ? nil : 10
+    limit = @is_registerd ? nil : 10
     @highlight = params[:highlight]
     case @mode = params[:mode]
     when 'age'
       @age = params[:age]
-      @bonuses = Bonus.find(:all, :conditions => ["age = ?", @age], :order => 'amount ASC', :limit => limit)
+      @bonuses = Bonus.find(:all, :conditions => ["age = ?", @age], :order => 'income ASC', :limit => limit)
     when 'company_name'
       @company_name = params[:company_name]
-      @bonuses = Bonus.find(:all, :conditions => ["company_name = ?", @company_name], :order => 'amount ASC', :limit => limit)
+      @bonuses = Bonus.find(:all, :conditions => ["company_name = ?", @company_name], :order => 'income ASC', :limit => limit)
     else
-      @bonuses = Bonus.find(:all, :order => 'amount ASC', :limit => limit)
+      @bonuses = Bonus.find(:all, :order => 'income ASC', :limit => limit)
     end
+    @total_count = Bonus.count
   end
 
   def facebook_auth_callback
@@ -24,6 +25,7 @@ class BonusesController < ApplicationController
 
   def logout
     session[:access_token] = nil
+    session[:facebook_id] = nil
     redirect_to :action => :list
   end
 
@@ -33,6 +35,7 @@ class BonusesController < ApplicationController
     graph = Koala::Facebook::API.new(session[:access_token])
 
     @user = graph.get_object("me")
+    session[:facebook_id] = @user["id"].to_s
 
     @companies = []
     if work = @user["work"]
@@ -50,6 +53,7 @@ class BonusesController < ApplicationController
  
     if params[:bonus]
       @bonus = Bonus.new(params[:bonus])
+      @bonus.facebook_id = session[:facebook_id]
       if @bonus.save
         redirect_to :action => :list, :highlight => @bonus.id, :anchor => @bonus.id
       end
@@ -67,6 +71,9 @@ class BonusesController < ApplicationController
     @oauth = Koala::Facebook::OAuth.new(FACEBOOK_APP_ID, FACEBOOK_SECRET, FACEBOOK_CALLBACK)
     @login_url = @oauth.url_for_oauth_code(:permissions => "user_birthday")
     @is_login = session[:access_token] != nil
+    if fbid = session[:facebook_id]
+      @is_registerd = Bonus.find_by_facebook_id(fbid)
+    end
   end
    
 end

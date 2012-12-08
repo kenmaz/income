@@ -1,4 +1,4 @@
-<h1>2012冬ボーナスいくらもらった？</h1>
+<h2>給与情報の登録</h2>
 
 <% if @bonus.errors.any? %>
   <table>
@@ -9,6 +9,8 @@
     </ul>
   <table>
 <% end %>
+
+<p>給与情報は匿名で登録されます。</p>
 
 <%= form_for @bonus, :url => {:action => :register} do |f| %>
   <div class="control-group <%= @bonus.errors[:company_name].empty? || 'error' %>">
@@ -53,10 +55,9 @@
   <div class="form-actions">
     <%= f.button '投稿', :class => "btn btn-primary" %>
   </div>
-  <%= link_to '金額を登録せずにランキングを見る', :action => :list %>
+  <%= link_to 'ランキングに戻る', :action => :list %>
 <% end %>
 
-<%= link_to 'logout', :action => :logout %>
 
 
 

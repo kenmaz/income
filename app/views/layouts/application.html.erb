@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>うわっ...私の年収、低すぎ...？ - 給与情報を共有しよう</title>
+  <title>うわっ...私の年収、低すぎ...？ - 給料がいかに安いかを匿名で告白するサイト -</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,7 +11,13 @@
 
 <div class="container">
   <%= render "ad_banner" %>
-  <%= render "social" %>
+
+  <div style="text-align:center">
+    <h1>うわっ...私の年収、低すぎ...？</h1>
+    <p class="lead">- 給料がいかに安いかを匿名で告白するサイト -</p>
+    <%= render "social" %>
+  </div>
+
   <%= yield %>
   <%= render "ad_banner_bottom" %>
 </div>
