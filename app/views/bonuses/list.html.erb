@@ -1,9 +1,8 @@
-<h1>
-  2012冬ボーナスランキング
-</h1>
+<h1>うわっ...私の年収、低すぎ...？</h1>
+<h3>- 給料がいかに安いかを自慢するサイト -</h3>
 
 <p>
-  <%= link_to '匿名でボーナス金額を登録してみる', {:action => :register}, {:class => "btn btn-large"} %>
+  <%= link_to '匿名で給与を登録して完全なランキングを見る', @login_url, {:class => "btn btn-large"} %>
 </p>
 
 
@@ -22,9 +21,10 @@
   <thead>
     <tr>
       <th>No.</th>
-      <th>金額</th>
-      <th>年齢</th>
       <th>会社名</th>
+      <th>年齢</th>
+      <th>年収</th>
+      <th>2012冬ボーナス</th>
       <th>コメント</th>
     </tr>
   </thead>
@@ -32,9 +32,10 @@
     <% @bonuses.each_with_index do |bonus, i| %>
       <tr id="<%= bonus.id %>" class="<%= @highlight.to_i == bonus.id ? 'success' : ''%>">
         <td><%=h i + 1 %></td>
-        <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
-        <td><%=h link_to "#{bonus.age}歳", {:action => :list, :mode => :age, :age => bonus.age} %></td>
         <td><%=h link_to "#{bonus.company_name}", {:action => :list, :mode => :company_name, :company_name => bonus.company_name} %></td>
+        <td><%=h link_to "#{bonus.age}歳", {:action => :list, :mode => :age, :age => bonus.age} %></td>
+        <td><%=h number_to_currency(bonus.income, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
+        <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
         <td><%=h bonus.comment %></td>
       </tr>
     <% end %>

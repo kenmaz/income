@@ -1,6 +1,7 @@
 ja:
   attributes:  
-    amount: 金額
+    amount: 2012冬ボーナス額
+    income: 年収
     company_name: 会社名
     age: 年齢
     comment: コメント

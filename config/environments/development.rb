@@ -34,4 +34,13 @@ BonusRanking::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
 end
+FACEBOOK_APP_ID = "448953045163741"
+FACEBOOK_SECRET = "1d13d864b2e1e714a1982f892b2f9690"
+FACEBOOK_CALLBACK = "http://localhost:3000/facebook_auth_callback"
+
+require 'openssl'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+
+

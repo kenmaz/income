@@ -11,37 +11,52 @@
 <% end %>
 
 <%= form_for @bonus, :url => {:action => :register} do |f| %>
-    <div class="control-group <%= @bonus.errors[:amount].empty? || 'error' %>">
-      <%= f.label :amount, "金額（必須）" %>
-      <div class="input-append">
-        <%= f.text_field :amount, :placeholder => "例）500000" %>
-        <span class="add-on">円</span>
-      </div>
-    </div>
+  <div class="control-group <%= @bonus.errors[:company_name].empty? || 'error' %>">
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name, :placeholder => "例）ほげほげ商事" %>
+    <select id="company_candidate">
+      <% @companies.each do |company| %>
+        <option value="<%= company[:name] %>"><%= company[:name] %></option>
+      <% end %>
+    </select>
+  </div>
 
-    <div class="control-group <%= @bonus.errors[:company_name].empty? || 'error' %>">
-      <%= f.label :company_name, "会社名（必須）" %>
-      <%= f.text_field :company_name, :placeholder => "例）ほげほげ商事" %>
+  <div class="control-group <%= @bonus.errors[:age].empty? || 'error' %>">
+    <%= f.label :age %>
+    <div class="input-append">
+      <%= f.text_field :age, :placeholder => "例）28", :class => "input-small"%>
+      <span class="add-on">歳</span>
     </div>
+  </div>
 
-    <div class="control-group <%= @bonus.errors[:age].empty? || 'error' %>">
-      <%= f.label :age, "年齢（必須）" %>
-      <div class="input-append">
-        <%= f.text_field :age, :placeholder => "例）28", :class => "input-small"%>
-        <span class="add-on">歳</span>
-      </div>
+  <div class="control-group <%= @bonus.errors[:income].empty? || 'error' %>">
+    <%= f.label :income %>
+    <div class="input-append">
+      <%= f.text_field :income, :placeholder => "例）7500000" %>
+      <span class="add-on">円</span>
     </div>
+  </div>
 
-    <div class="control-group <%= @bonus.errors[:comment].empty? || 'error' %>">
-      <%= f.label :comment %>
-      <%= f.text_field :comment, :placeholder => "任意（256文字以内）", :class => "input-xlarge" %>
+  <div class="control-group <%= @bonus.errors[:amount].empty? || 'error' %>">
+    <%= f.label :amount %>
+    <div class="input-append">
+      <%= f.text_field :amount, :placeholder => "例）800000" %>
+      <span class="add-on">円</span>
     </div>
+  </div>
 
-    <div class="form-actions">
-      <%= f.button '投稿', :class => "btn btn-primary" %>
-    </div>
-    <%= link_to '金額を登録せずにランキングを見る', :action => :list %>
+  <div class="control-group <%= @bonus.errors[:comment].empty? || 'error' %>">
+    <%= f.label :comment, "コメント（任意）" %>
+    <%= f.text_field :comment, :placeholder => "任意（256文字以内）", :class => "input-xlarge" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button '投稿', :class => "btn btn-primary" %>
+  </div>
+  <%= link_to '金額を登録せずにランキングを見る', :action => :list %>
 <% end %>
+
+<%= link_to 'logout', :action => :logout %>
 
 
 

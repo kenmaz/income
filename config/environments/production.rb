@@ -65,3 +65,9 @@ BonusRanking::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
+
+FACEBOOK_APP_ID = "299033256882254"
+FACEBOOK_SECRET = "9473b712c06b38f1690d57725dcdac62"
+FACEBOOK_CALLBACK = "http://www24229ue.sakura.ne.jp/bonus_ranking/facebook_auth_callback"
+
+

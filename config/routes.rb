@@ -8,6 +8,8 @@ BonusRanking::Application.routes.draw do
   match '/' => 'bonuses#list'
   match '/list' => 'bonuses#list'
   match '/register' => 'bonuses#register'
+  match '/facebook_auth_callback' => 'bonuses#facebook_auth_callback'
+  match '/logout' => 'bonuses#logout'
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

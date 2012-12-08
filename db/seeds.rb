@@ -9,5 +9,5 @@
 require "csv"
 
 CSV.foreach("#{Rails.root}/db/default.csv") do |row|
-  Bonus.create(:company_name => row[0], :amount => row[1], :age => row[2])
+  Bonus.create(:company_name => row[0], :amount => row[1], :age => row[2], :income => row[1].to_i / 2 * 16)
 end
