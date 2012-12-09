@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <title>うわっ...私の年収、低すぎ...？</title>
-  <meta name="description" content="年収がいかに低いかを匿名で告白するサイト"></meta>
+  <title>年収・賞与データベース</title>
+  <meta name="description" content="各企業の年収・賞与を匿名で登録、共有するサイト"></meta>
+  <%= favicon_link_tag 'favicon.ico' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -14,8 +15,8 @@
   <%= render "ad_banner" %>
 
   <div style="text-align:center">
-    <h1><%= image_tag "uwa.jpg", :size => "50x50" %>うわっ...私の年収、低すぎ...？</h1>
-    <p class="lead">- 年収がいかに低いかを匿名で告白するサイト -</p>
+    <h1>年収・賞与データベース</h1>
+    <p class="lead">- 各企業の年収・賞与を匿名で登録、共有するサイト -</p>
     
     <%= render "social" %>
   </div>
