@@ -20,7 +20,9 @@
 
 
 <div class="container">
-  <%= render "ad_banner" %>
+  <% unless @sp %>
+    <%= render "ad_banner" %>
+  <% end %>
 
   <div style="text-align:center">
     <h1>年収・賞与データベース</h1>
@@ -28,6 +30,11 @@
     
     <%= render "social" %>
   </div>
+
+  <% if @sp %>
+    <%= render "ad_banner" %>
+  <% end %>
+
 
   <%= yield %>
   <%= render "ad_banner_bottom" %>
