@@ -1,6 +1,7 @@
 class BonusesController < ApplicationController
 
   before_filter :setup_for_auth
+  before_filter :sp_check
 
   def list
     limit = @is_registerd ? nil : 10
@@ -75,5 +76,12 @@ class BonusesController < ApplicationController
       @is_registerd = Bonus.find_by_facebook_id(fbid)
     end
   end
-   
+  
+  def sp_check
+    ua = request.env["HTTP_USER_AGENT"]
+    if(ua.include?('Mobile') || ua.include?('Android'))
+      @sp = true
+    end
+  end
+ 
 end
