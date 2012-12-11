@@ -17,7 +17,9 @@
       <th>年齢</th>
       <th>年収</th>
       <th>2012冬ボーナス</th>
-      <th>コメント</th>
+      <% unless @sp %>
+        <th>コメント</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -28,7 +30,9 @@
         <td><%=h link_to "#{bonus.age}歳", {:action => :list, :mode => :age, :age => bonus.age} %></td>
         <td><%=h number_to_currency(bonus.income, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
         <td><%=h number_to_currency(bonus.amount, :unit => "&yen;", :format => "%u%n", :precision => 0) %></td>
-        <td><%=h bonus.comment %></td>
+        <% unless @sp %>
+          <td><%=h bonus.comment %></td>
+        <% end %>
       </tr>
     <% end %>
     <% unless @is_registerd %>
@@ -39,7 +43,9 @@
           <td>..</td>
           <td>.....</td>
           <td>....</td>
-          <td>...</td>
+          <% unless @sp %>
+            <td>...</td>
+          <% end %>
         </tr>
       <% end %>
     <% end %>
